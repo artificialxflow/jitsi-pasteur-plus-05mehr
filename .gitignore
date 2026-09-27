@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+!.env.*.example
+*jitsi-meet-cfg*
+secrets/
+*.pem
+*.key
+INTEGRATION-HANDOFF.local.md
+jwt-secret.txt

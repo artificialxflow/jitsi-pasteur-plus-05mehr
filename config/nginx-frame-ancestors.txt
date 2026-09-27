@@ -1,0 +1,6 @@
+# After first `docker compose up`, merge into ${CONFIG}/nginx/meet.conf inside the HTTPS server block
+# (path on VPS: usually ~/.jitsi-meet-cfg/nginx/meet.conf — backup before edit, then restart web container)
+#
+# add_header Content-Security-Policy "frame-ancestors 'self' https://pasteur.plus https://www.pasteur.plus" always;
+#
+# Add staging origin if needed, e.g. https://staging.pasteur.plus
