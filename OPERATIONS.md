@@ -1,6 +1,7 @@
-# Pasteur Meet — عملیات سرور (`meet.pasteur.plus`)
+# Pasteur Meet — عملیات سرور (`meet.pasteur-plus.com`)
 
-مسیر پیش‌فرض نصب: `/opt/jitsi` (docker-jitsi-meet).
+مسیر پیش‌فرض نصب: `/opt/jitsi` (docker-jitsi-meet).  
+لاگ نصب: `/var/log/pasteur-meet/`.
 
 ## وضعیت سرویس‌ها
 
@@ -27,7 +28,7 @@ docker compose logs -f --tail=100 web prosody jicofo jvb
 
 ## Embed از `pasteur.plus`
 
-1. در اپ Next: CSP `frame-src https://meet.pasteur.plus`
+1. در اپ Next: CSP `frame-src https://meet.pasteur-plus.com`
 2. در Jitsi nginx: `frame-ancestors` — راهنما در `config/nginx-frame-ancestors.txt`
 3. پس از ویرایش nginx: `cd /opt/jitsi && docker compose restart web`
 
@@ -56,5 +57,5 @@ docker compose up -d
 ## Smoke test از لپتاپ
 
 ```bash
-JITSI_APP_SECRET='...' node mint-test-jwt.js
+JITSI_APP_SECRET='...' JITSI_DOMAIN=meet.pasteur-plus.com node mint-test-jwt.js
 ```

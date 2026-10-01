@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Smoke test: mint HS256 JWT for meet.pasteur.plus (same contract as Pasteur Plus API).
+ * Smoke test: mint HS256 JWT for meet.pasteur-plus.com (same contract as Pasteur Plus API).
  *
  * Usage (PowerShell):
  *   $env:JITSI_APP_SECRET="..."; node mint-test-jwt.js
@@ -12,7 +12,7 @@ const crypto = require('crypto');
 
 const secret = process.env.JITSI_APP_SECRET || process.env.JWT_APP_SECRET;
 const appId = process.env.JITSI_APP_ID || process.env.JWT_APP_ID || 'pasteur_plus';
-const domain = process.env.JITSI_DOMAIN || 'meet.pasteur.plus';
+const domain = process.env.JITSI_DOMAIN || 'meet.pasteur-plus.com';
 const room = process.env.ROOM || 'test-room-pasteur';
 const moderator = process.env.MODERATOR !== 'false';
 const exp = Math.floor(Date.now() / 1000) + Number(process.env.TTL_SEC || 3600);

@@ -1,10 +1,10 @@
 # Pasteur Meet — کارهای فازبندی‌شده
 
-**هدف:** ویدیوی ۱:۱ امن داخل `pasteur.plus` با Jitsi روی `meet.pasteur.plus` (سرور جدا از Runflare).
+**هدف:** ویدیوی ۱:۱ امن داخل `pasteur.plus` با Jitsi روی `meet.pasteur-plus.com` (سرور جدا از Runflare).
 
 **مراجع:** `jitsi/PASTEUR-MEET-DEPLOY-SPEC.md` · `jitsi/INTEGRATION-HANDOFF-TEMPLATE.md` · `README.md`
 
-**وضعیت:** artefactهای deploy در repo آماده است؛ **فاز ۱–۶ روی VPS** تا زمان DNS + سرور انجام نشده (آخرین بررسی DNS: `meet.pasteur.plus` هنوز ثبت نشده).
+**وضعیت:** artefactهای deploy در repo آماده است (`bootstrap-vps.sh`). دامنهٔ نهایی: `meet.pasteur-plus.com`.
 
 ---
 
@@ -128,8 +128,8 @@
 
 ## قدم بعدی (شما)
 
-1. VPS بگیرید و رکورد DNS `A` برای `meet.pasteur.plus` بزنید.  
-2. `export LETSENCRYPT_EMAIL=...` و `sudo bash scripts/install-vps.sh` روی سرور.  
+1. این repo را push کنید.  
+2. روی VPS: `bash /root/bootstrap-vps.sh` (از `scripts/bootstrap-vps.sh`).  
 3. Secret را در Runflare بگذارید و تست‌های فاز ۵–۶ را تیک بزنید.
 
 *آخرین به‌روزرسانی چک‌لیست: artefactهای repo + فاز ۰ قراردادی.*

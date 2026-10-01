@@ -2,7 +2,7 @@
 
 **تاریخ deploy:**  
 **مسئول:**  
-**Public URL:** https://meet.pasteur.plus  
+**Public URL:** https://meet.pasteur-plus.com  
 
 ---
 
@@ -13,7 +13,7 @@
 
 | متغیر | مقدار |
 |--------|--------|
-| `JITSI_DOMAIN` | `meet.pasteur.plus` |
+| `JITSI_DOMAIN` | `meet.pasteur-plus.com` |
 | `JITSI_APP_ID` | `pasteur_plus` |
 | `JITSI_APP_SECRET` | *(همان `JWT_APP_SECRET` در `.env` Jitsi)* |
 

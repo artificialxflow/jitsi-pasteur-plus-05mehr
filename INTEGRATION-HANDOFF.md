@@ -2,7 +2,7 @@
 
 **تاریخ deploy:** *(پس از اجرای `install-vps.sh` روی VPS پر کنید)*  
 **مسئول:**  
-**Public URL:** https://meet.pasteur.plus  
+**Public URL:** https://meet.pasteur-plus.com  
 
 ---
 
@@ -13,7 +13,7 @@
 
 | متغیر | مقدار |
 |--------|--------|
-| `JITSI_DOMAIN` | `meet.pasteur.plus` |
+| `JITSI_DOMAIN` | `meet.pasteur-plus.com` |
 | `JITSI_APP_ID` | `pasteur_plus` |
 | `JITSI_APP_SECRET` | *(همان `JWT_APP_SECRET` در `/opt/jitsi/.env` یا `/root/pasteur-meet-jwt-secret.txt` روی VPS)* |
 
@@ -24,7 +24,7 @@
 | مورد | مقدار |
 |------|--------|
 | docker-jitsi-meet git tag / commit | `stable-9646` (پیش‌فرض اسکریپت — پس از deploy commit واقعی را بنویسید) |
-| `PUBLIC_URL` | `https://meet.pasteur.plus` |
+| `PUBLIC_URL` | `https://meet.pasteur-plus.com` |
 | JWT issuer / audience | `pasteur_plus` |
 | پورت UDP JVB | معمولاً `10000` — از `.env` سرور |
 | TURN تست از موبایل ایران | بله / خیر |
