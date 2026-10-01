@@ -9,3 +9,6 @@ config.startWithVideoMuted = false;
 
 // Reduce third-party calls from embedded meet UI
 config.disableThirdPartyRequests = true;
+
+// Prefer Persian UI; room/display names still come from JWT / URL
+config.useRoomAsSharedDocumentName = false;

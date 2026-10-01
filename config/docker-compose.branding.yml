@@ -1,0 +1,6 @@
+# Merged automatically when placed as /opt/jitsi/docker-compose.override.yml
+# Mounts Pasteur logo over Jitsi static images path.
+services:
+  web:
+    volumes:
+      - ${CONFIG}/web/pasteur-logo.png:/usr/share/jitsi-meet/images/pasteur-logo.png:ro

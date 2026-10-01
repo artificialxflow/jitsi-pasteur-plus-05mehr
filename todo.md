@@ -128,8 +128,8 @@
 
 ## قدم بعدی (شما)
 
-1. این repo را push کنید.  
-2. روی VPS: `bash /root/bootstrap-vps.sh` (از `scripts/bootstrap-vps.sh`).  
-3. Secret را در Runflare بگذارید و تست‌های فاز ۵–۶ را تیک بزنید.
+1. این repo را push کنید (شامل `PASTEUR-PLUS-INTEGRATION.md`).  
+2. Secret را در Runflare بگذارید؛ تست JWT با `mint-test-jwt.js`.  
+3. فایل `PASTEUR-PLUS-INTEGRATION.md` را به پروژه pasteur.plus ببرید و پرامپت Agent آن را اجرا کنید.
 
 *آخرین به‌روزرسانی چک‌لیست: artefactهای repo + فاز ۰ قراردادی.*

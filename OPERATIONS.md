@@ -20,11 +20,50 @@ docker compose logs -f --tail=100 web prosody jicofo jvb
 | 3478 | udp/tcp | Coturn |
 | 5349 | tcp | Coturn TLS |
 
+## پورت‌ها باید ۸۰/۴۴۳ باشند
+
+```bash
+grep -E '^(HTTP_PORT|HTTPS_PORT)=' /opt/jitsi/.env
+# HTTP_PORT=80
+# HTTPS_PORT=443
+cd /opt/jitsi && docker compose ps   # web: 0.0.0.0:80->80 و 443->443
+```
+
+اگر acme داخل کانتینر fail شد (ZeroSSL EAB):
+
+```bash
+cd /opt/pasteur-meet-repo
+sudo bash scripts/issue-cert-certbot.sh
+```
+
 ## JWT
 
 - Secret در `.env`: `JWT_APP_SECRET`
 - همان مقدار در Runflare: `JITSI_APP_SECRET`
 - روی سرور پشتیبان: `/root/pasteur-meet-jwt-secret.txt` (اگر با `install-vps.sh` نصب شده)
+- تست: `mint-test-jwt.js` — مقدار secret را مستقیم در `?jwt=` نگذارید
+
+## برندینگ (لوگو + فارسی)
+
+روی VPS بعد از `git pull` در `/opt/pasteur-meet-repo`:
+
+```bash
+sudo bash /opt/pasteur-meet-repo/scripts/apply-branding.sh
+```
+
+چک لوگو: `https://meet.pasteur-plus.com/images/pasteur-logo.png`  
+سپس در مرورگر Hard Refresh (Ctrl+Shift+R).
+
+نام نمایشی کاربر از JWT (`context.user.name`) می‌آید؛ نام اتاق از بخش path آدرس. برای تست:
+
+```bash
+cd /opt/pasteur-meet-repo
+JITSI_APP_SECRET="$(cat /root/pasteur-meet-jwt-secret.txt)" \
+JITSI_DOMAIN=meet.pasteur-plus.com \
+DISPLAY_NAME='پزشک پاستور' \
+ROOM=pasteur-visite \
+node mint-test-jwt.js
+```
 
 ## Embed از `pasteur.plus`
 

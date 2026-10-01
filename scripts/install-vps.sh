@@ -154,6 +154,9 @@ set_kv ENABLE_LETSENCRYPT 1
 set_kv LETSENCRYPT_DOMAIN "$MEET_HOST"
 set_kv LETSENCRYPT_EMAIL "$LETSENCRYPT_EMAIL"
 set_kv ENABLE_HTTP_REDIRECT 1
+# Production must bind standard ports (env.example defaults to 8000/8443)
+set_kv HTTP_PORT 80
+set_kv HTTPS_PORT 443
 
 # Help JVB advertise the correct public address for WebRTC / mobile
 if [[ -n "$JVB_ADVERTISE_IPS" ]]; then
@@ -168,13 +171,16 @@ else
   log "WARNING: gen-passwords.sh not found — skipping"
 fi
 
-section "Custom Pasteur web config"
+section "Custom Pasteur web config + branding"
 CONFIG="${CONFIG:-$HOME/.jitsi-meet-cfg}"
 if grep -q '^CONFIG=' .env; then
   CONFIG="$(grep '^CONFIG=' .env | cut -d= -f2- | tr -d '"' | tr -d "'")"
 fi
+# Expand leading ~ if present
+CONFIG="${CONFIG/#\~/$HOME}"
 log "CONFIG dir=$CONFIG"
 mkdir -p "$CONFIG/web"
+
 if [[ -f "$REPO_ROOT/config/custom-config.js" ]]; then
   cp -v "$REPO_ROOT/config/custom-config.js" "$CONFIG/web/custom-config.js"
 else
@@ -184,6 +190,29 @@ if [[ -f "$REPO_ROOT/config/custom-interface_config.js" ]]; then
   cp -v "$REPO_ROOT/config/custom-interface_config.js" "$CONFIG/web/custom-interface_config.js"
 else
   log "WARNING: missing $REPO_ROOT/config/custom-interface_config.js"
+fi
+
+LOGO_SRC=""
+for candidate in \
+  "$REPO_ROOT/logo.png" \
+  "$REPO_ROOT/config/branding/logo.png" \
+  "$REPO_ROOT/config/branding-logo.png"
+do
+  if [[ -f "$candidate" ]]; then
+    LOGO_SRC="$candidate"
+    break
+  fi
+done
+if [[ -n "$LOGO_SRC" ]]; then
+  cp -v "$LOGO_SRC" "$CONFIG/web/pasteur-logo.png"
+  log "Logo installed: $CONFIG/web/pasteur-logo.png"
+else
+  log "WARNING: logo.png not found in repo — Jitsi default logo may remain"
+fi
+
+if [[ -f "$REPO_ROOT/config/docker-compose.branding.yml" ]]; then
+  cp -v "$REPO_ROOT/config/docker-compose.branding.yml" "$JITSI_INSTALL_DIR/docker-compose.override.yml"
+  log "Wrote docker-compose.override.yml for logo mount"
 fi
 
 section "docker compose pull + up -d"
